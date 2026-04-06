@@ -8,7 +8,7 @@ from sklearn.linear_model import LinearRegression
 # -------------------------------
 # LOAD DATA
 # -------------------------------
-data = pd.read_csv("reels_datasets.csv"))
+data = pd.read_csv("reels_datasets.csv")
 
 # -------------------------------
 # TRAIN MODEL
