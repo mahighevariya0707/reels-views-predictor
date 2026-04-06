@@ -8,7 +8,12 @@ from sklearn.linear_model import LinearRegression
 # -------------------------------
 # LOAD DATA
 # -------------------------------
-data = pd.read_csv("https://drive.google.com/uc?id=-ah5BjTO-o2tHx_OERznEE_AkL4BjCfR")
+import gdown
+
+url = "https://drive.google.com/uc?id=-ah5BjTO-o2tHx_OERznEE_AkL4BjCfR"
+gdown.download(url, "data.csv", quiet=False)
+
+data = pd.read_csv("data.csv")
 
 # -------------------------------
 # TRAIN MODEL
