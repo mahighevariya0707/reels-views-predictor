@@ -13,7 +13,7 @@ model = pickle.load(open("model.pkl", "rb"))
 # -------------------------------
 # LOAD DATA (LOCAL FILE)
 # -------------------------------
-data = pd.read_csv("reels_dataset.csv")
+data = pd.read_csv("reels_datasets.csv")
 
 # -------------------------------
 # UI
