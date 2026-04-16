@@ -3,21 +3,17 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import stats
-from sklearn.linear_model import LinearRegression
+import pickle
 
 # -------------------------------
-# LOAD DATA
+# LOAD MODEL (FROM COLAB)
 # -------------------------------
-data = pd.read_csv("reels_datasets.csv")
+model = pickle.load(open("model.pkl", "rb"))
 
 # -------------------------------
-# TRAIN MODEL
+# LOAD DATA (LOCAL FILE)
 # -------------------------------
-X = data[["Hashtags","Likes","Comments","Shares","Followers","WatchTime","PostingTime","Genre"]]
-y = data["Views"]
-
-model = LinearRegression()
-model.fit(X, y)
+data = pd.read_csv("reels_dataset.csv")
 
 # -------------------------------
 # UI
@@ -123,18 +119,15 @@ if concept == "Hypothesis Testing":
 
     st.write("Alpha =", alpha)
 
-    # SIMPLE FORMULA
     st.write("Decision Rule:")
     st.write("If p-value < alpha → Reject H0")
     st.write("If p-value > alpha → Accept H0")
 
-    # p-value display
     if p < 0.001:
         st.write("Calculated p-value < 0.001")
     else:
         st.write("Calculated p-value =", round(p,2))
 
-    # decision
     if p < alpha:
         decision = "Reject H0"
     else:
@@ -142,27 +135,20 @@ if concept == "Hypothesis Testing":
 
     st.write("Decision:", decision)
 
-    # -------------------------------
-    # NORMAL CURVE
-    # -------------------------------
+    # Normal curve
     x_vals = np.linspace(-4, 4, 100)
     y_vals = stats.norm.pdf(x_vals)
 
     fig, ax = plt.subplots()
-
     ax.plot(x_vals, y_vals)
 
-    # critical value
     z_crit = stats.norm.ppf(1 - alpha/2)
 
     ax.axvline(z_crit)
     ax.axvline(-z_crit)
 
-    # rejection region
     ax.fill_between(x_vals, y_vals, where=(x_vals >= z_crit), color='red', alpha=0.5)
     ax.fill_between(x_vals, y_vals, where=(x_vals <= -z_crit), color='red', alpha=0.5)
-
-    ax.set_title("Normal Distribution Curve")
 
     st.pyplot(fig)
 
@@ -172,3 +158,16 @@ if concept == "Hypothesis Testing":
         st.write("p-value lies in rejection region → Reject H0")
     else:
         st.write("p-value lies in acceptance region → Accept H0")
+
+# -------------------------------
+# CLOUD INFO
+# -------------------------------
+st.subheader("Cloud Implementation")
+
+st.write("""
+SaaS: Streamlit Cloud (Application hosting)
+
+PaaS: Google Colab (Model training)
+
+IaaS: AWS (Underlying infrastructure)
+""")
