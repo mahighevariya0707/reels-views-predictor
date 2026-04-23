@@ -19,7 +19,7 @@ data = pd.read_csv("reels_datasets.csv")
 # UI
 # -------------------------------
 st.set_page_config(page_title="Reels Views Predictor")
-st.title("Reels Views Predictor")
+st.title("Cloud Based-Reels Views Predictor")
 
 # -------------------------------
 # INPUT
@@ -162,12 +162,3 @@ if concept == "Hypothesis Testing":
 # -------------------------------
 # CLOUD INFO
 # -------------------------------
-st.subheader("Cloud Implementation")
-
-st.write("""
-SaaS: Streamlit Cloud (Application hosting)
-
-PaaS: Google Colab (Model training)
-
-IaaS: AWS (Underlying infrastructure)
-""")
